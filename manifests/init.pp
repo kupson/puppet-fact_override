@@ -3,6 +3,9 @@
 # This module can override some fact values
 #
 # Parameters:
+# 
+#   [*ensure*] - present|absent
+#   [*value*]  - fact value
 #
 # Actions:
 #
@@ -15,7 +18,8 @@
 #   }
 #
 define fact_override (
-    $value
+    $value,
+    $ensure = 'present'
 ) {
 
     augeas {
@@ -23,7 +27,10 @@ define fact_override (
             lens    => 'Shellvars.lns',
             context => '/files/etc/environment',
             incl    => '/etc/environment',
-            changes => "set FACTER_${title} ${value}";
+            changes => $ensure ? {
+                         'present' => "set FACTER_${title} ${value}",
+                         'absent'  => "rm FACTER_${title}",
+                       };
     }
 
     if $require {
