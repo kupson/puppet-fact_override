@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 #   fact_override {
-#     'ipaddress': value => $::ipaddress_eth0.500
+#     'ipaddress': value => $::ipaddress_eth0_500
 #   }
 #
 define fact_override (
