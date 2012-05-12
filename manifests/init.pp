@@ -19,11 +19,17 @@ define fact_override (
 ) {
 
     augeas {
-        "fact_override_$title":
+        "fact_override_${title}":
             lens    => 'Shellvars.lns',
             context => '/files/etc/environment',
             incl    => '/etc/environment',
             changes => "set FACTER_${title} ${value}";
+    }
+
+    if $require {
+        Augeas["fact_override_${title}"] {
+            require +> $require,
+        }
     }
 
 }
