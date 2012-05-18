@@ -39,4 +39,22 @@ define fact_override (
         }
     }
 
+    if $before {
+        Augeas["fact_override_${title}"] {
+            before +> $before,
+        }
+    }
+
+    if $notify {
+        Augeas["fact_override_${title}"] {
+            notify +> $notify,
+        }
+    }
+
+    if $subscribe {
+        Augeas["fact_override_${title}"] {
+            subscribe +> $subscribe,
+        }
+    }
+
 }
