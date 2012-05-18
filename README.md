@@ -11,8 +11,8 @@ Warning:
 
 ## Parameters
 
-  [*ensure*] - present|absent
-  [*value*]  - fact value
+-  [*ensure*] - present|absent
+-  [*value*]  - fact value
 
 ## Usage
 
